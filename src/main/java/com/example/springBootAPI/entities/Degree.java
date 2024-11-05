@@ -6,31 +6,31 @@ import jakarta.persistence.*;
 public class Degree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Degree id
+    private Long d_id; // Degree id
 
     @Column(nullable = false)
-    private String dscr; // Degree description
+    private String d_dscr; // Degree description
 
 
-    public Degree(Long c_id, String c_dscr) {
-        this.id = c_id;
-        this.dscr = c_dscr;
+    public Degree(Long d_id, String d_dscr) {
+        this.d_id = d_id;
+        this.d_dscr = d_dscr;
     }
 
 
     public Long getId() {
-        return id;
+        return d_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.d_id = id;
     }
 
     public String getDscr() {
-        return dscr;
+        return d_dscr;
     }
 
     public void setDscr(String dscr) {
-        this.dscr = dscr;
+        this.d_dscr = d_dscr;
     }
 }
