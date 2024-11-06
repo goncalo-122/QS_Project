@@ -5,7 +5,7 @@ public class User {
     @Table(name = "user")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long u_id;//User ID
+    private Long u_id;//User ID
 
     @Column(nullable = false)
     private String u_ut_id;//user type id-(foreign key)
@@ -14,10 +14,10 @@ public class User {
     private String u_email;//user email
 
     @Column(nullable = false)
-    private String u_pass;//user passwordz
+    private String u_pass;//user password
 
 
-    public User(long u_id, String u_ut_id, String u_email, String u_pass) {
+    public User(Long u_id, String u_ut_id, String u_email, String u_pass) {
         this.u_id = u_id;
         this.u_ut_id = u_ut_id;
         this.u_email = u_email;
@@ -25,7 +25,7 @@ public class User {
     }
 
 
-    public long getU_id() {
+    public Long getU_id() {
         return u_id;
     }
 

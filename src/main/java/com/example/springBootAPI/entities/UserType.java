@@ -8,7 +8,7 @@ public class UserType {
     private String ut_id;//UserType ID
 
     @Column(nullable = false)
-    private String ut_dscr;//userType description
+    private String ut_dscr;//UserType Description
 
     public UserType(String ut_id, String ut_dscr) {
         this.ut_id = ut_id;

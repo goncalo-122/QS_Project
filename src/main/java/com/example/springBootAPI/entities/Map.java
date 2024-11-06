@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 public class Map {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long m_id;//MAP ID
+    private Long m_id;//MAP ID
 
     @Column(nullable = false)
     private Long m_s_id;//semester ID -(foreign key)
