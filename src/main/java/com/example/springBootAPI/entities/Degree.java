@@ -1,8 +1,13 @@
 package com.example.springBootAPI.entities;
 import jakarta.persistence.*;
 
+/**
+ * @author vss
+ * @version 1.0
+ * Degree class represents Degree entity to be mapped to database
+ */
 @Entity
-@Table(name = "degree")
+@Table(name = "Degree")
 public class Degree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
