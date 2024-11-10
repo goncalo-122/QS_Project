@@ -7,6 +7,7 @@ import jakarta.persistence.*;
  * @version 1.0
  * AssessmentType class represents AssessmentType entity to be mapped to database
  */
+
 @Entity
 @Table(name = "AssessmentType")
 public class AssessmentType {

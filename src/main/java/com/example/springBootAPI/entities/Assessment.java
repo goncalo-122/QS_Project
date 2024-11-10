@@ -64,7 +64,7 @@ public class Assessment {
         return a_ac_id;
     }
 
-    public void setA_at_id(Long a_ac_id) {
+    public void setA_ac_id(Long a_ac_id) {
         this.a_ac_id = a_ac_id;
     }
 

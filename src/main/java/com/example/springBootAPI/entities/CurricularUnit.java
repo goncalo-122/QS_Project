@@ -1,40 +1,45 @@
 package com.example.springBootAPI.entities;
 import jakarta.persistence.*;
+
+/**
+ * @author gsn
+ * @version 1.0
+ * CurricularUnit class represents CurricularUnit entity to be mapped to database
+ */
+
 @Entity
-@Table(name = "cu")
-//CU=Curricular Unit
-public class Cu {
+@Table(name = "CurricularUnit")
+public class CurricularUnit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cu_id;//CU ID
+    private Long cu_id; // Curricular unit id
 
     @Column(nullable = false)
-    private Long cu_d_id;//Degree ID -(foreign key)
+    private Long cu_d_id; // Degree id (foreign key)
 
     @Column(nullable = false)
-    private Long  cu_at_id;//Assessment type Id-(foreign key)
+    private Long  cu_at_id; // Assessment type id (foreign key)
 
     @Column(nullable = false)
-    private Long cu_s_id;//UC Semester-(foreign key)
+    private Long cu_s_id; //  Semester (foreign key)
 
     @Column(nullable = false)
-    private String cu_dscr;//Cu description
+    private String cu_dscr; // Curricular unit description
 
     @Column(nullable = false)
-    private String cu_year;//CU Year
-
+    private String cu_year; // Year
 
     @Column(nullable = false)
-    private Long cu_attent;//CU Attendance
+    private Double cu_attend; // Attendance
 
-    public Cu(Long cu_id, Long cu_d_id, Long cu_at_id, Long cu_s_id, String cu_dscr, String cu_year, Long cu_attent) {
+    public CurricularUnit(Long cu_id, Long cu_d_id, Long cu_at_id, Long cu_s_id, String cu_dscr, String cu_year, Double cu_attend) {
         this.cu_id = cu_id;
         this.cu_d_id = cu_d_id;
         this.cu_at_id = cu_at_id;
         this.cu_s_id = cu_s_id;
         this.cu_dscr = cu_dscr;
         this.cu_year = cu_year;
-        this.cu_attent = cu_attent;
+        this.cu_attend = cu_attend;
     }
 
 
@@ -86,11 +91,11 @@ public class Cu {
         this.cu_year = cu_year;
     }
 
-    public Long getCu_attent() {
-        return cu_attent;
+    public Double getCu_attend() {
+        return cu_attend;
     }
 
-    public void setCu_attent(Long cu_attent) {
-        this.cu_attent = cu_attent;
+    public void setCu_attend(Double cu_attend) {
+        this.cu_attend = cu_attend;
     }
 }

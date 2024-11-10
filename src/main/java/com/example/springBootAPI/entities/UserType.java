@@ -1,14 +1,22 @@
 package com.example.springBootAPI.entities;
 import jakarta.persistence.*;
+
+/**
+ * @author gsn
+ * @version 1.0
+ * UserType class represents UserType entity to be mapped to database
+ */
+
+@Entity
+@Table(name = "UserType")
 public class UserType {
-    @Entity
-    @Table(name = "usertype")
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String ut_id;//UserType ID
+    private String ut_id; // User type id
 
     @Column(nullable = false)
-    private String ut_dscr;//UserType Description
+    private String ut_dscr; // Description
 
     public UserType(String ut_id, String ut_dscr) {
         this.ut_id = ut_id;

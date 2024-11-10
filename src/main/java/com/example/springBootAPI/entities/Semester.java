@@ -8,6 +8,7 @@ import java.time.LocalDate;
  * @version 1.0
  * Semester class represents Semester entity to be mapped to database
  */
+
 @Entity
 @Table(name = "Semester")
 public class Semester {
