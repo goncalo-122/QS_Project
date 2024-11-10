@@ -3,11 +3,18 @@ package com.example.springBootAPI.service;
 import com.example.springBootAPI.entity.Degree;
 import com.example.springBootAPI.repository.DegreeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class for managing Degree entities.
+ */
+
+@Service
 public class DegreeService {
+
     private final DegreeRepository degreeRepository;
 
     @Autowired
@@ -21,7 +28,7 @@ public class DegreeService {
      * @param degree the entity to save
      * @return the persisted entity
      */
-    public Degree saveProduct(Degree degree) {
+    public Degree saveDegree(Degree degree) {
         return degreeRepository.save(degree);
     }
 
@@ -30,7 +37,7 @@ public class DegreeService {
      *
      * @return the list of degrees
      */
-    public List<Degree> getAllProducts() {
+    public List<Degree> getAllDegrees() {
         return degreeRepository.findAll();
     }
 
@@ -40,7 +47,7 @@ public class DegreeService {
      * @param id the ID of the entity
      * @return the entity
      */
-    public Optional<Degree> getProductById(Long id) {
+    public Optional<Degree> getDegreeById(Long id) {
         return degreeRepository.findById(id);
     }
 
@@ -58,7 +65,7 @@ public class DegreeService {
             degree.setDscr(updatedDegree.getDscr());
             return degreeRepository.save(degree);
         } else {
-            throw new RuntimeException("Product not found");
+            throw new RuntimeException("Degree not found");
         }
     }
 
