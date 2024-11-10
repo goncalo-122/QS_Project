@@ -1,6 +1,6 @@
 package com.example.springBootAPI.service;
 
-import com.example.springBootAPI.entities.Degree;
+import com.example.springBootAPI.entity.Degree;
 import com.example.springBootAPI.repository.DegreeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
