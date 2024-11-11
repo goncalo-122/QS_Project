@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * @version 1.0
  * Service class for managing Degree entities.
  */
 

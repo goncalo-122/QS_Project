@@ -1,6 +1,6 @@
 package com.example.springBootAPI.repository;
 
-import com.example.springBootAPI.entity.Degree;
+import com.example.springBootAPI.entity.Assessment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface AssessmentRepository extends JpaRepository<Degree, Long> {
+public interface AssessmentRepository extends JpaRepository<Assessment, Long> {
 }
