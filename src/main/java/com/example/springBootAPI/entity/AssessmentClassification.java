@@ -1,4 +1,4 @@
-package com.example.springBootAPI.entities;
+package com.example.springBootAPI.entity;
 import jakarta.persistence.*;
 
 /**
@@ -6,6 +6,7 @@ import jakarta.persistence.*;
  * @version 1.0
  * AssessmentClassification class represents AssessmentClassification entity to be mapped to database
  */
+
 @Entity
 @Table(name = "AssessmentClassification")
 public class AssessmentClassification {

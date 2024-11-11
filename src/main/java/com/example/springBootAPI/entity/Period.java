@@ -1,9 +1,7 @@
-package com.example.springBootAPI.entities;
+package com.example.springBootAPI.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 /**
@@ -11,6 +9,9 @@ import java.time.LocalDate;
  * @version 1.0
  * Period class represents Period entity to be mapped to database
  */
+
+@Entity
+@Table(name = "Period")
 public class Period {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

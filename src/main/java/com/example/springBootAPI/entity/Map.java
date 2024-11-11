@@ -1,26 +1,33 @@
-package com.example.springBootAPI.entities;
+package com.example.springBootAPI.entity;
 import jakarta.persistence.*;
+
+/**
+ * @author gsn
+ * @version 1.0
+ * Map class represents Map entity to be mapped to database
+ */
+
 @Entity
-@Table(name = "map")
+@Table(name = "Map")
 public class Map {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long m_id;//MAP ID
+    private Long m_id; // Map id
 
     @Column(nullable = false)
-    private Long m_s_id;//semester ID -(foreign key)
+    private Long m_s_id; //semester id (foreign key)
 
     @Column(nullable = false)
-    private Long m_p_id;// Period ID -(foreign key)
+    private Long m_p_id; // Period id (foreign key)
 
     @Column(nullable = false)
-    private Long m_d_id;// Degree ID -(foreign key)
+    private Long m_d_id; // Degree id (foreign key)
 
     @Column(nullable = false)
-    private Long m_u_id;// User ID -(foreign key)
+    private Long m_u_id; // User id (foreign key)
 
     @Column(nullable = false)
-    private  String  m_lectiveyear;// lective year
+    private  String  m_lectiveyear; // lective year
 
     public Map(long m_id, Long m_s_id, Long m_p_id, Long m_d_id, Long m_u_id, String m_lectiveyear) {
         this.m_id = m_id;

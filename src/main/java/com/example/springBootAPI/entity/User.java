@@ -1,21 +1,28 @@
-package com.example.springBootAPI.entities;
+package com.example.springBootAPI.entity;
 import jakarta.persistence.*;
+
+/**
+ * @author gsn
+ * @version 1.0
+ * User class represents User entity to be mapped to database
+ */
+
+@Entity
+@Table(name = "User")
 public class User {
-    @Entity
-    @Table(name = "user")
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long u_id;//User ID
+    private Long u_id; // User id
 
     @Column(nullable = false)
-    private String u_ut_id;//user type id-(foreign key)
+    private String u_ut_id; // user type (foreign key)
 
     @Column(nullable = false)
-    private String u_email;//user email
+    private String u_email; // user email
 
     @Column(nullable = false)
-    private String u_pass;//user password
-
+    private String u_pass; // user password
 
     public User(Long u_id, String u_ut_id, String u_email, String u_pass) {
         this.u_id = u_id;
@@ -23,7 +30,6 @@ public class User {
         this.u_email = u_email;
         this.u_pass = u_pass;
     }
-
 
     public Long getU_id() {
         return u_id;
