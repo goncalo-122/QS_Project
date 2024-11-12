@@ -37,7 +37,7 @@ public class PeriodService {
      *
      * @return the list of entities
      */
-    public List<Period> getAllPeriod() {
+    public List<Period> getAllPeriods() {
         return periodRepository.findAll();
     }
 
