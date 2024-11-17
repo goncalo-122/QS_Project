@@ -10,57 +10,61 @@ import java.time.LocalDate;
  */
 
 @Entity
-@Table(name = "Semester")
+@Table(name = "semester")
 public class Semester {
     @Id
+    @Column(name = "s_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long s_id; // Semester id
+    private Long id; // Semester id
 
-    @Column(nullable = false)
-    private String s_dscr; // Semester description
+    @Column(name = "s_dscr", nullable = false)
+    private String description; // Semester description
 
-    @Column(nullable = false)
-    private LocalDate s_initdate; // Semester initial date
+    @Column(name = "s_initdate", nullable = false)
+    private LocalDate initialDate; // Semester initial date
 
-    @Column(nullable = false)
-    private LocalDate s_enddate; // Semester end date
+    @Column(name = "s_enddate", nullable = false)
+    private LocalDate endDate; // Semester end date
 
-    public Semester(Long s_id, String s_dscr, LocalDate s_initdate, LocalDate s_enddate) {
-        this.s_id = s_id;
-        this.s_dscr = s_dscr;
-        this.s_initdate = s_initdate;
-        this.s_enddate = s_enddate;
+    public Semester(){
+
+    }
+    public Semester(Long id, String description, LocalDate initialDate, LocalDate endDate) {
+        this.id = id;
+        this.description = description;
+        this.initialDate = initialDate;
+        this.endDate = endDate;
     }
 
-    public Long getS_id() {
-        return s_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setS_id(Long s_id) {
-        this.s_id = s_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getS_dscr() {
-        return s_dscr;
+    public String getDescription() {
+        return description;
     }
 
-    public void setS_dscr(String s_dscr) {
-        this.s_dscr = s_dscr;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public LocalDate getS_initdate() {
-        return s_initdate;
+    public LocalDate getInitialDate() {
+        return initialDate;
     }
 
-    public void setS_initdate(LocalDate s_initdate) {
-        this.s_initdate = s_initdate;
+    public void setInitialDate(LocalDate initialDate) {
+        this.initialDate = initialDate;
     }
 
-    public LocalDate getS_enddate() {
-        return s_enddate;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setS_enddate(LocalDate s_enddate) {
-        this.s_enddate = s_enddate;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 }

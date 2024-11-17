@@ -1,6 +1,8 @@
 package com.example.springBootAPI.entity;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 /**
  * @author gsn
  * @version 1.0
@@ -8,58 +10,76 @@ import jakarta.persistence.*;
  */
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
 
     @Id
+    @Column(name = "u_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long u_id; // User id
+    private Long id; // User id
 
-    @Column(nullable = false)
-    private String u_ut_id; // user type (foreign key)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Map> maps;
 
-    @Column(nullable = false)
-    private String u_email; // user email
+    @ManyToOne
+    @JoinColumn(name = "u_ut_id", nullable = false)
+    private UserType type; // user type (foreign key)
 
-    @Column(nullable = false)
-    private String u_pass; // user password
+    @Column(name = "u_email", nullable = false)
+    private String email; // user email
 
-    public User(Long u_id, String u_ut_id, String u_email, String u_pass) {
-        this.u_id = u_id;
-        this.u_ut_id = u_ut_id;
-        this.u_email = u_email;
-        this.u_pass = u_pass;
+    @Column(name = "u_password", nullable = false)
+    private String password; // user password
+
+    public User(){
+
     }
 
-    public Long getU_id() {
-        return u_id;
+    public User(Long id, List<Map> maps, UserType type, String email, String password) {
+        this.id = id;
+        this.maps = maps;
+        this.type = type;
+        this.email = email;
+        this.password = password;
     }
 
-    public void setU_id(long u_id) {
-        this.u_id = u_id;
+    public Long getId() {
+        return id;
     }
 
-    public String getU_ut_id() {
-        return u_ut_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setU_ut_id(String u_ut_id) {
-        this.u_ut_id = u_ut_id;
+    public List<Map> getMaps() {
+        return maps;
     }
 
-    public String getU_email() {
-        return u_email;
+    public void setMaps(List<Map> maps) {
+        this.maps = maps;
     }
 
-    public void setU_email(String u_email) {
-        this.u_email = u_email;
+    public UserType getType() {
+        return type;
     }
 
-    public String getU_pass() {
-        return u_pass;
+    public void setType(UserType type) {
+        this.type = type;
     }
 
-    public void setU_pass(String u_pass) {
-        this.u_pass = u_pass;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

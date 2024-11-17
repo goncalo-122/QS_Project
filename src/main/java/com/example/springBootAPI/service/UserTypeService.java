@@ -62,7 +62,7 @@ public class UserTypeService {
         Optional<UserType> existingUserType = userTypeRepository.findById(id);
         if (existingUserType.isPresent()) {
             UserType userType = existingUserType.get();
-            userType.setUt_dscr(updatedUserType.getUt_dscr());
+            userType.setDescription(updatedUserType.getDescription());
             return userTypeRepository.save(userType);
         } else {
             throw new RuntimeException("UserType not found");

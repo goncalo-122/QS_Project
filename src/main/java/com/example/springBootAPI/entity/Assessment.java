@@ -10,38 +10,45 @@ import java.time.LocalTime;
  * Assessment class represents Assessment entity to be mapped to database
  */
 @Entity
-@Table(name = "Assessment")
+@Table(name = "assessment")
 public class Assessment {
     @Id
+    @Column(name = "a_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long a_id; // Assessment id
 
-    @Column(nullable = false)
-    private Long a_uc_id; // UC of the assessment (foreign key)
+    @ManyToOne
+    @JoinColumn(name = "a_uc_id", nullable = false)
+    private CurricularUnit curricularUnit; // UC of the assessment (foreign key)
 
-    @Column(nullable = false)
-    private Long a_ac_id; // Assessment classification (foreign key)
+    @ManyToOne
+    @JoinColumn(name = "a_ac_id", nullable = false)
+    private AssessmentClassification assessmentClassification; // Assessment classification (foreign key)
 
-    @Column(nullable = false)
-    private Double a_weight; // Assessment weight
+    @Column(name = "a_weight", nullable = false)
+    private Double weight; // Assessment weight
 
-    @Column(nullable = false)
-    private LocalDate a_date; // Assessment date
+    @Column(name = "a_date", nullable = false)
+    private LocalDate date; // Assessment date
 
-    @Column(nullable = false)
-    private LocalTime a_time; // Assessment time
+    @Column(name = "a_time", nullable = false)
+    private LocalTime time; // Assessment time
 
-    @Column(nullable = false)
-    private String a_room; // Assessment room
+    @Column(name = "a_classroom", nullable = false)
+    private String classroom; // Assessment room
 
-    public Assessment(Long a_id, Long a_uc_id, Long a_ac_id, Double a_weight, LocalDate a_date, LocalTime a_time, String a_room) {
+    public Assessment() {
+
+    }
+
+    public Assessment(Long a_id, CurricularUnit curricularUnit, AssessmentClassification assessmentClassification, Double weight, LocalDate date, LocalTime time, String classroom) {
         this.a_id = a_id;
-        this.a_uc_id = a_uc_id;
-        this.a_ac_id = a_ac_id;
-        this.a_weight = a_weight;
-        this.a_date = a_date;
-        this.a_time = a_time;
-        this.a_room = a_room;
+        this.curricularUnit = curricularUnit;
+        this.assessmentClassification = assessmentClassification;
+        this.weight = weight;
+        this.date = date;
+        this.time = time;
+        this.classroom = classroom;
     }
 
     public Long getA_id() {
@@ -52,51 +59,51 @@ public class Assessment {
         this.a_id = a_id;
     }
 
-    public Long getA_uc_id() {
-        return a_uc_id;
+    public CurricularUnit getCurricularUnit() {
+        return curricularUnit;
     }
 
-    public void setA_uc_id(Long a_uc_id) {
-        this.a_uc_id = a_uc_id;
+    public void setCurricularUnit(CurricularUnit curricularUnit) {
+        this.curricularUnit = curricularUnit;
     }
 
-    public Long getA_ac_id() {
-        return a_ac_id;
+    public AssessmentClassification getAssessmentClassification() {
+        return assessmentClassification;
     }
 
-    public void setA_ac_id(Long a_ac_id) {
-        this.a_ac_id = a_ac_id;
+    public void setAssessmentClassification(AssessmentClassification assessmentClassification) {
+        this.assessmentClassification = assessmentClassification;
     }
 
-    public Double getA_weight() {
-        return a_weight;
+    public Double getWeight() {
+        return weight;
     }
 
-    public void setA_weight(Double a_weight) {
-        this.a_weight = a_weight;
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
-    public LocalDate getA_date() {
-        return a_date;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setA_date(LocalDate a_date) {
-        this.a_date = a_date;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public LocalTime getA_time() {
-        return a_time;
+    public LocalTime getTime() {
+        return time;
     }
 
-    public void setA_time(LocalTime a_time) {
-        this.a_time = a_time;
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
-    public String getA_room() {
-        return a_room;
+    public String getClassroom() {
+        return classroom;
     }
 
-    public void setA_room(String a_room) {
-        this.a_room = a_room;
+    public void setClassroom(String classroom) {
+        this.classroom = classroom;
     }
 }

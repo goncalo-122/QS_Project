@@ -1,6 +1,8 @@
 package com.example.springBootAPI.entity;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 /**
  * @author gsn
  * @version 1.0
@@ -8,94 +10,127 @@ import jakarta.persistence.*;
  */
 
 @Entity
-@Table(name = "CurricularUnit")
+@Table(name = "curricular_unit")
 public class CurricularUnit {
     @Id
+    @Column(name = "cu_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cu_id; // Curricular unit id
+    private Long id; // Curricular unit id
 
-    @Column(nullable = false)
-    private Long cu_d_id; // Degree id (foreign key)
+    @OneToMany(mappedBy = "curricularUnit", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Assessment> assessments;
 
-    @Column(nullable = false)
-    private Long  cu_at_id; // Assessment type id (foreign key)
+    @ManyToOne
+    @JoinColumn(name = "cu_m_id", nullable = false)
+    private Map map; // Map id (foreign key)
 
-    @Column(nullable = false)
-    private Long cu_s_id; //  Semester (foreign key)
+    @ManyToOne
+    @JoinColumn(name = "cu_d_id", nullable = false)
+    private Degree degree; // Degree id (foreign key)
 
-    @Column(nullable = false)
-    private String cu_dscr; // Curricular unit description
+    @ManyToOne
+    @JoinColumn(name = "cu_at_id", nullable = false)
+    private AssessmentType assessmentType; // Assessment type id (foreign key)
 
-    @Column(nullable = false)
-    private String cu_year; // Year
+    @ManyToOne
+    @JoinColumn(name = "cu_s_id", nullable = false)
+    private Semester semester; //  Semester (foreign key)
 
-    @Column(nullable = false)
-    private Double cu_attend; // Attendance
+    @Column(name = "cu_dscr", nullable = false)
+    private String description; // Curricular unit description
 
-    public CurricularUnit(Long cu_id, Long cu_d_id, Long cu_at_id, Long cu_s_id, String cu_dscr, String cu_year, Double cu_attend) {
-        this.cu_id = cu_id;
-        this.cu_d_id = cu_d_id;
-        this.cu_at_id = cu_at_id;
-        this.cu_s_id = cu_s_id;
-        this.cu_dscr = cu_dscr;
-        this.cu_year = cu_year;
-        this.cu_attend = cu_attend;
+    @Column(name = "cu_year", nullable = false)
+    private String year; // Year
+
+    @Column(name = "cu_attend", nullable = false)
+    private Boolean attendance; // Mandatory Attendance
+
+    public CurricularUnit() {
+
+    }
+
+    public CurricularUnit(Long id, Map map, List<Assessment> assessments, Degree degree, AssessmentType assessmentType, Semester semester, String description, String year, Boolean attendance) {
+        this.id = id;
+        this.assessments = assessments;
+        this.map = map;
+        this.degree = degree;
+        this.assessmentType = assessmentType;
+        this.semester = semester;
+        this.description = description;
+        this.year = year;
+        this.attendance = attendance;
     }
 
 
-    public Long getCu_id() {
-        return cu_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setCu_id(Long cu_id) {
-        this.cu_id = cu_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getCu_d_id() {
-        return cu_d_id;
+    public List<Assessment> getAssessments() {
+        return assessments;
     }
 
-    public void setCu_d_id(Long cu_d_id) {
-        this.cu_d_id = cu_d_id;
+    public void setAssessments(List<Assessment> assessments) {
+        this.assessments = assessments;
     }
 
-    public Long getCu_at_id() {
-        return cu_at_id;
+    public Map getMap() {
+        return map;
     }
 
-    public void setCu_at_id(Long cu_at_id) {
-        this.cu_at_id = cu_at_id;
+    public void setMap(Map map) {
+        this.map = map;
     }
 
-    public Long getCu_s_id() {
-        return cu_s_id;
+    public Degree getDegree() {
+        return degree;
     }
 
-    public void setCu_s_id(Long cu_s_id) {
-        this.cu_s_id = cu_s_id;
+    public void setDegree(Degree degree) {
+        this.degree = degree;
     }
 
-    public String getCu_dscr() {
-        return cu_dscr;
+    public AssessmentType getAssessmentType() {
+        return assessmentType;
     }
 
-    public void setCu_dscr(String cu_dscr) {
-        this.cu_dscr = cu_dscr;
+    public void setAssessmentType(AssessmentType assessmentType) {
+        this.assessmentType = assessmentType;
     }
 
-    public String getCu_year() {
-        return cu_year;
+    public Semester getSemester() {
+        return semester;
     }
 
-    public void setCu_year(String cu_year) {
-        this.cu_year = cu_year;
+    public void setSemester(Semester semester) {
+        this.semester = semester;
     }
 
-    public Double getCu_attend() {
-        return cu_attend;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCu_attend(Double cu_attend) {
-        this.cu_attend = cu_attend;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public Boolean getAttendance() {
+        return attendance;
+    }
+
+        public void setAttendance(Boolean attendance) {
+        this.attendance = attendance;
     }
 }

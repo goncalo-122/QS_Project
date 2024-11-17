@@ -8,35 +8,40 @@ import jakarta.persistence.*;
  */
 
 @Entity
-@Table(name = "UserType")
+@Table(name = "user_type")
 public class UserType {
 
     @Id
+    @Column(name = "ut_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String ut_id; // User type id
+    private Long id; // User type id
 
-    @Column(nullable = false)
-    private String ut_dscr; // Description
+    @Column(name = "ut_dscr", nullable = false)
+    private String description; // Description
 
-    public UserType(String ut_id, String ut_dscr) {
-        this.ut_id = ut_id;
-        this.ut_dscr = ut_dscr;
+    public UserType(){
+
+    }
+
+    public UserType(Long id, String description) {
+        this.id = id;
+        this.description = description;
     }
 
 
-    public String getUt_id() {
-        return ut_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setUt_id(String ut_id) {
-        this.ut_id = ut_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getUt_dscr() {
-        return ut_dscr;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUt_dscr(String ut_dscr) {
-        this.ut_dscr = ut_dscr;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -30,6 +30,7 @@ public class DegreeService {
      * @return the persisted entity
      */
     public Degree saveDegree(Degree degree) {
+        System.out.println(degree.getDescription());
         return degreeRepository.save(degree);
     }
 
@@ -63,7 +64,7 @@ public class DegreeService {
         Optional<Degree> existingDegree = degreeRepository.findById(id);
         if (existingDegree.isPresent()) {
             Degree degree = existingDegree.get();
-            degree.setDscr(updatedDegree.getDscr());
+            degree.setDescription(updatedDegree.getDescription());
             return degreeRepository.save(degree);
         } else {
             throw new RuntimeException("Degree not found");

@@ -63,11 +63,12 @@ public class MapService {
         Optional<Map> existingMap = mapRepository.findById(id);
         if (existingMap.isPresent()) {
             Map map = existingMap.get();
-            map.setM_s_id(updatedMap.getM_s_id());
-            map.setM_p_id(updatedMap.getM_p_id());
-            map.setM_d_id(updatedMap.getM_d_id());
-            map.setM_u_id(updatedMap.getM_u_id());
-            map.setM_lectiveyear(updatedMap.getM_lectiveyear());
+            map.setCurricularUnits(updatedMap.getCurricularUnits());
+            map.setSemester(updatedMap.getSemester());
+            map.setPeriod(updatedMap.getPeriod());
+            map.setDegree(updatedMap.getDegree());
+            map.setUser(updatedMap.getUser());
+            map.setLectiveyear(updatedMap.getLectiveyear());
             return mapRepository.save(map);
         } else {
             throw new RuntimeException("Map not found");
