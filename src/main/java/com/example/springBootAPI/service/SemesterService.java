@@ -62,9 +62,9 @@ public class SemesterService {
         Optional<Semester> existingSemester = semesterRepository.findById(id);
         if (existingSemester.isPresent()) {
             Semester semester = existingSemester.get();
-            semester.setS_dscr(updatedSemester.getS_dscr());
-            semester.setS_initdate(updatedSemester.getS_initdate());
-            semester.setS_enddate(updatedSemester.getS_enddate());
+            semester.setDescription(updatedSemester.getDescription());
+            semester.setInitialDate(updatedSemester.getInitialDate());
+            semester.setEndDate(updatedSemester.getEndDate());
             return semesterRepository.save(semester);
         } else {
             throw new RuntimeException("Semester not found");

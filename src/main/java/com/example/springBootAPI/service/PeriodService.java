@@ -62,9 +62,9 @@ public class PeriodService {
         Optional<Period> existingPeriod = periodRepository.findById(id);
         if (existingPeriod.isPresent()) {
             Period period = existingPeriod.get();
-            period.setP_dscr(updatedPeriod.getP_dscr());
-            period.setP_initdate(updatedPeriod.getP_initdate());
-            period.setP_enddate(updatedPeriod.getP_enddate());
+            period.setDescription(updatedPeriod.getDescription());
+            period.setInitialDate(updatedPeriod.getInitialDate());
+            period.setEndDate(updatedPeriod.getEndDate());
             return periodRepository.save(period);
         } else {
             throw new RuntimeException("Period not found");

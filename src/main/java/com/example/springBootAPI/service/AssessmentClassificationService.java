@@ -63,7 +63,7 @@ public class AssessmentClassificationService {
         Optional<AssessmentClassification> existingAssessmentClassification = assessmentClassificationRepository.findById(id);
         if (existingAssessmentClassification.isPresent()) {
             AssessmentClassification assessmentClassification = existingAssessmentClassification.get();
-            assessmentClassification.setAc_dscr(updatedAssessmentClassification.getAc_dscr());
+            assessmentClassification.setDescription(updatedAssessmentClassification.getDescription());
             return assessmentClassificationRepository.save(assessmentClassification);
         } else {
             throw new RuntimeException("Assessment classification not found");

@@ -8,33 +8,38 @@ import jakarta.persistence.*;
  */
 
 @Entity
-@Table(name = "AssessmentClassification")
+@Table(name = "assessment_classification")
 public class AssessmentClassification {
     @Id
+    @Column(name = "ac_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ac_id; // Assessment classification id
+    private Long id; // Assessment classification id
 
-    @Column(nullable = false)
-    private String ac_dscr; // Assessment classification description
+    @Column(name = "ac_dscr", nullable = false)
+    private String description; // Assessment classification description
 
-    public AssessmentClassification(Long ac_id, String ac_dscr) {
-        this.ac_id = ac_id;
-        this.ac_dscr = ac_dscr;
+    public AssessmentClassification() {
+
     }
 
-    public Long getAc_id() {
-        return ac_id;
+    public AssessmentClassification(Long id, String description) {
+        this.id = id;
+        this.description = description;
     }
 
-    public void setAc_id(Long ac_id) {
-        this.ac_id = ac_id;
+    public Long getId() {
+        return id;
     }
 
-    public String getAc_dscr() {
-        return ac_dscr;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setAc_dscr(String ac_dscr) {
-        this.ac_dscr = ac_dscr;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

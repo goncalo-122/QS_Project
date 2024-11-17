@@ -63,7 +63,7 @@ public class AssessmentTypeService {
         Optional<AssessmentType> existingAssessmentType = assessmentTypeRepository.findById(id);
         if (existingAssessmentType.isPresent()) {
             AssessmentType assessmentType = existingAssessmentType.get();
-            assessmentType.setAt_dscr(updatedAssessmentType.getAt_dscr());
+            assessmentType.setDescription(updatedAssessmentType.getDescription());
             return assessmentTypeRepository.save(assessmentType);
         } else {
             throw new RuntimeException("Assessment type not found");

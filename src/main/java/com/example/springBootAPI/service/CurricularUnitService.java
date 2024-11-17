@@ -63,12 +63,14 @@ public class CurricularUnitService {
         Optional<CurricularUnit> existingCurricularUnit = curricularUnitRepository.findById(id);
         if (existingCurricularUnit.isPresent()) {
             CurricularUnit curricularUnit = existingCurricularUnit.get();
-            curricularUnit.setCu_d_id(updatedCurricularUnit.getCu_d_id());
-            curricularUnit.setCu_at_id(updatedCurricularUnit.getCu_at_id());
-            curricularUnit.setCu_s_id(updatedCurricularUnit.getCu_s_id());
-            curricularUnit.setCu_dscr(updatedCurricularUnit.getCu_dscr());
-            curricularUnit.setCu_year(updatedCurricularUnit.getCu_year());
-            curricularUnit.setCu_attend(updatedCurricularUnit.getCu_attend());
+            curricularUnit.setAssessments(updatedCurricularUnit.getAssessments());
+            curricularUnit.setMap(updatedCurricularUnit.getMap());
+            curricularUnit.setDegree(updatedCurricularUnit.getDegree());
+            curricularUnit.setAssessmentType(updatedCurricularUnit.getAssessmentType());
+            curricularUnit.setSemester(updatedCurricularUnit.getSemester());
+            curricularUnit.setDescription(updatedCurricularUnit.getDescription());
+            curricularUnit.setYear(updatedCurricularUnit.getYear());
+            curricularUnit.setAttendance(updatedCurricularUnit.getAttendance());
             return curricularUnitRepository.save(curricularUnit);
         } else {
             throw new RuntimeException("Curricular unit not found");

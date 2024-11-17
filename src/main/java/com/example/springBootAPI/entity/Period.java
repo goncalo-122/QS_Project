@@ -11,57 +11,62 @@ import java.time.LocalDate;
  */
 
 @Entity
-@Table(name = "Period")
+@Table(name = "period")
 public class Period {
     @Id
+    @Column(name = "p_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long p_id; // Period id
+    private Long id; // Period id
 
-    @Column(nullable = false)
-    private String p_dscr; // Period description
+    @Column(name = "p_dscr", nullable = false)
+    private String description; // Period description
 
-    @Column(nullable = false)
-    private LocalDate p_initdate; // Period initial date
+    @Column(name = "p_initdate", nullable = false)
+    private LocalDate initialDate; // Period initial date
 
-    @Column(nullable = false)
-    private LocalDate p_enddate; // Period end date
+    @Column(name = "p_enddate", nullable = false)
+    private LocalDate endDate; // Period end date
 
-    public Period(Long p_id, String p_dscr, LocalDate p_initdate, LocalDate p_enddate) {
-        this.p_id = p_id;
-        this.p_dscr = p_dscr;
-        this.p_initdate = p_initdate;
-        this.p_enddate = p_enddate;
+    public Period() {
+
     }
 
-    public Long getP_id() {
-        return p_id;
+    public Period(Long id, String description, LocalDate initialDate, LocalDate endDate) {
+        this.id = id;
+        this.description = description;
+        this.initialDate = initialDate;
+        this.endDate = endDate;
     }
 
-    public void setP_id(Long p_id) {
-        this.p_id = p_id;
+    public Long getId() {
+        return id;
     }
 
-    public String getP_dscr() {
-        return p_dscr;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setP_dscr(String p_dscr) {
-        this.p_dscr = p_dscr;
+    public String getDescription() {
+        return description;
     }
 
-    public LocalDate getP_initdate() {
-        return p_initdate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setP_initdate(LocalDate p_initdate) {
-        this.p_initdate = p_initdate;
+    public LocalDate getInitialDate() {
+        return initialDate;
     }
 
-    public LocalDate getP_enddate() {
-        return p_enddate;
+    public void setInitialDate(LocalDate initialDate) {
+        this.initialDate = initialDate;
     }
 
-    public void setP_enddate(LocalDate p_enddate) {
-        this.p_enddate = p_enddate;
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 }

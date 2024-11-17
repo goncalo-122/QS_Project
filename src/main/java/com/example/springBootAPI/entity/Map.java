@@ -1,6 +1,8 @@
 package com.example.springBootAPI.entity;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 /**
  * @author gsn
  * @version 1.0
@@ -8,81 +10,102 @@ import jakarta.persistence.*;
  */
 
 @Entity
-@Table(name = "Map")
+@Table(name = "map")
 public class Map {
     @Id
+    @Column(name = "m_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long m_id; // Map id
+    private Long id; // Map id
 
-    @Column(nullable = false)
-    private Long m_s_id; //semester id (foreign key)
+    @OneToMany(mappedBy = "map", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CurricularUnit> curricularUnits;
 
-    @Column(nullable = false)
-    private Long m_p_id; // Period id (foreign key)
+    @ManyToOne
+    @JoinColumn(name = "m_s_id", nullable = false)
+    private Semester semester; //semester id (foreign key)
 
-    @Column(nullable = false)
-    private Long m_d_id; // Degree id (foreign key)
+    @ManyToOne
+    @JoinColumn(name = "m_p_id", nullable = false)
+    private Period period; // Period id (foreign key)
 
-    @Column(nullable = false)
-    private Long m_u_id; // User id (foreign key)
+    @ManyToOne
+    @JoinColumn(name = "m_d_id", nullable = false)
+    private Degree degree; // Degree id (foreign key)
 
-    @Column(nullable = false)
-    private  String  m_lectiveyear; // lective year
+    @ManyToOne
+    @JoinColumn(name = "m_u_id", nullable = false)
+    private User user; // User id (foreign key)
 
-    public Map(long m_id, Long m_s_id, Long m_p_id, Long m_d_id, Long m_u_id, String m_lectiveyear) {
-        this.m_id = m_id;
-        this.m_s_id = m_s_id;
-        this.m_p_id = m_p_id;
-        this.m_d_id = m_d_id;
-        this.m_u_id = m_u_id;
-        this.m_lectiveyear = m_lectiveyear;
+    @Column(name = "m_lectiveyear", nullable = false)
+    private  String lectiveyear; // lective year
+
+    public Map() {
+
     }
 
-    public long getM_id() {
-        return m_id;
+    public Map(long id, List<CurricularUnit> curricularUnits,  Semester semester, Period period, Degree degree, User user, String lectiveyear) {
+        this.id = id;
+        this.curricularUnits = curricularUnits;
+        this.semester = semester;
+        this.period = period;
+        this.degree = degree;
+        this.user = user;
+        this.lectiveyear = lectiveyear;
     }
 
-    public void setM_id(long m_id) {
-        this.m_id = m_id;
+    public long getId() {
+        return id;
     }
 
-    public Long getM_s_id() {
-        return m_s_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setM_s_id(Long m_s_id) {
-        this.m_s_id = m_s_id;
+    public List<CurricularUnit> getCurricularUnits() {
+        return curricularUnits;
     }
 
-    public Long getM_p_id() {
-        return m_p_id;
+    public void setCurricularUnits(List<CurricularUnit> curricularUnits) {
+        this.curricularUnits = curricularUnits;
     }
 
-    public void setM_p_id(Long m_p_id) {
-        this.m_p_id = m_p_id;
+    public Semester getSemester() {
+        return semester;
     }
 
-    public Long getM_d_id() {
-        return m_d_id;
+    public void setSemester(Semester semester) {
+        this.semester = semester;
     }
 
-    public void setM_d_id(Long m_d_id) {
-        this.m_d_id = m_d_id;
+    public Period getPeriod() {
+        return period;
     }
 
-    public Long getM_u_id() {
-        return m_u_id;
+    public void setPeriod(Period period) {
+        this.period = period;
     }
 
-    public void setM_u_id(Long m_u_id) {
-        this.m_u_id = m_u_id;
+    public Degree getDegree() {
+        return degree;
     }
 
-    public String getM_lectiveyear() {
-        return m_lectiveyear;
+    public void setDegree(Degree degree) {
+        this.degree = degree;
     }
 
-    public void setM_lectiveyear(String m_lectiveyear) {
-        this.m_lectiveyear = m_lectiveyear;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getLectiveyear() {
+        return lectiveyear;
+    }
+
+    public void setLectiveyear(String lectiveyear) {
+        this.lectiveyear = lectiveyear;
     }
 }

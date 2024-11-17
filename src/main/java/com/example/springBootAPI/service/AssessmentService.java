@@ -63,12 +63,12 @@ public class AssessmentService {
         Optional<Assessment> existingAssessment = assessmentRepository.findById(id);
         if (existingAssessment.isPresent()) {
             Assessment assessment = existingAssessment.get();
-            assessment.setA_ac_id(updatedAssessment.getA_ac_id());
-            assessment.setA_uc_id(updatedAssessment.getA_uc_id());
-            assessment.setA_date(updatedAssessment.getA_date());
-            assessment.setA_time(updatedAssessment.getA_time());
-            assessment.setA_room(updatedAssessment.getA_room());
-            assessment.setA_weight(updatedAssessment.getA_weight());
+            assessment.setAssessmentClassification(updatedAssessment.getAssessmentClassification());
+            assessment.setCurricularUnit(updatedAssessment.getCurricularUnit());
+            assessment.setDate(updatedAssessment.getDate());
+            assessment.setTime(updatedAssessment.getTime());
+            assessment.setClassroom(updatedAssessment.getClassroom());
+            assessment.setWeight(updatedAssessment.getWeight());
             return assessmentRepository.save(assessment);
         } else {
             throw new RuntimeException("Assessment not found");
