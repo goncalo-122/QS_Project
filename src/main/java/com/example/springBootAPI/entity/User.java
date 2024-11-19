@@ -18,9 +18,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // User id
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Map> maps;
-
     @ManyToOne
     @JoinColumn(name = "u_ut_id", nullable = false)
     private UserType type; // user type (foreign key)
@@ -35,9 +32,8 @@ public class User {
 
     }
 
-    public User(Long id, List<Map> maps, UserType type, String email, String password) {
+    public User(Long id, UserType type, String email, String password) {
         this.id = id;
-        this.maps = maps;
         this.type = type;
         this.email = email;
         this.password = password;
@@ -49,14 +45,6 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public List<Map> getMaps() {
-        return maps;
-    }
-
-    public void setMaps(List<Map> maps) {
-        this.maps = maps;
     }
 
     public UserType getType() {

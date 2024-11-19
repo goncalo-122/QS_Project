@@ -1,5 +1,6 @@
 package com.example.springBootAPI.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,10 +16,11 @@ public class Assessment {
     @Id
     @Column(name = "a_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long a_id; // Assessment id
+    private Long id; // Assessment id
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "a_uc_id", nullable = false)
+    @JoinColumn(name = "a_cu_id", nullable = false)
     private CurricularUnit curricularUnit; // UC of the assessment (foreign key)
 
     @ManyToOne
@@ -41,8 +43,8 @@ public class Assessment {
 
     }
 
-    public Assessment(Long a_id, CurricularUnit curricularUnit, AssessmentClassification assessmentClassification, Double weight, LocalDate date, LocalTime time, String classroom) {
-        this.a_id = a_id;
+    public Assessment(Long id, CurricularUnit curricularUnit, AssessmentClassification assessmentClassification, Double weight, LocalDate date, LocalTime time, String classroom) {
+        this.id = id;
         this.curricularUnit = curricularUnit;
         this.assessmentClassification = assessmentClassification;
         this.weight = weight;
@@ -51,12 +53,12 @@ public class Assessment {
         this.classroom = classroom;
     }
 
-    public Long getA_id() {
-        return a_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setA_id(Long a_id) {
-        this.a_id = a_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public CurricularUnit getCurricularUnit() {

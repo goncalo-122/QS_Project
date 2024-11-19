@@ -1,4 +1,5 @@
 package com.example.springBootAPI.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -20,6 +21,10 @@ public class Map {
     @OneToMany(mappedBy = "map", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CurricularUnit> curricularUnits;
 
+//    @ManyToOne
+//    @JoinColumn(name = "m_u_id", nullable = false)
+//    private User user; // User id (foreign key)
+
     @ManyToOne
     @JoinColumn(name = "m_s_id", nullable = false)
     private Semester semester; //semester id (foreign key)
@@ -28,13 +33,10 @@ public class Map {
     @JoinColumn(name = "m_p_id", nullable = false)
     private Period period; // Period id (foreign key)
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "m_d_id", nullable = false)
     private Degree degree; // Degree id (foreign key)
-
-    @ManyToOne
-    @JoinColumn(name = "m_u_id", nullable = false)
-    private User user; // User id (foreign key)
 
     @Column(name = "m_lectiveyear", nullable = false)
     private  String lectiveyear; // lective year
@@ -43,13 +45,13 @@ public class Map {
 
     }
 
-    public Map(long id, List<CurricularUnit> curricularUnits,  Semester semester, Period period, Degree degree, User user, String lectiveyear) {
+    public Map(long id, List<CurricularUnit> curricularUnits,  Semester semester, Period period, Degree degree /*User user*/, String lectiveyear) {
         this.id = id;
         this.curricularUnits = curricularUnits;
         this.semester = semester;
         this.period = period;
         this.degree = degree;
-        this.user = user;
+//        this.user = user;
         this.lectiveyear = lectiveyear;
     }
 
@@ -93,13 +95,13 @@ public class Map {
         this.degree = degree;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public String getLectiveyear() {
         return lectiveyear;
