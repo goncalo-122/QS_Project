@@ -1,4 +1,5 @@
 package com.example.springBootAPI.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -20,10 +21,12 @@ public class CurricularUnit {
     @OneToMany(mappedBy = "curricularUnit", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Assessment> assessments;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cu_m_id", nullable = false)
     private Map map; // Map id (foreign key)
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cu_d_id", nullable = false)
     private Degree degree; // Degree id (foreign key)
@@ -51,8 +54,8 @@ public class CurricularUnit {
 
     public CurricularUnit(Long id, Map map, List<Assessment> assessments, Degree degree, AssessmentType assessmentType, Semester semester, String description, String year, Boolean attendance) {
         this.id = id;
-        this.assessments = assessments;
         this.map = map;
+        this.assessments = assessments;
         this.degree = degree;
         this.assessmentType = assessmentType;
         this.semester = semester;
@@ -130,7 +133,7 @@ public class CurricularUnit {
         return attendance;
     }
 
-        public void setAttendance(Boolean attendance) {
+    public void setAttendance(Boolean attendance) {
         this.attendance = attendance;
     }
 }

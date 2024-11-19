@@ -64,6 +64,7 @@ public class DegreeService {
         Optional<Degree> existingDegree = degreeRepository.findById(id);
         if (existingDegree.isPresent()) {
             Degree degree = existingDegree.get();
+            degree.setMaps(updatedDegree.getMaps());
             degree.setDescription(updatedDegree.getDescription());
             return degreeRepository.save(degree);
         } else {
