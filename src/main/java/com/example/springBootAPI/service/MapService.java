@@ -1,7 +1,13 @@
 package com.example.springBootAPI.service;
 
+import com.example.springBootAPI.entity.Degree;
 import com.example.springBootAPI.entity.Map;
+import com.example.springBootAPI.entity.Period;
+import com.example.springBootAPI.entity.Semester;
+import com.example.springBootAPI.repository.DegreeRepository;
 import com.example.springBootAPI.repository.MapRepository;
+import com.example.springBootAPI.repository.PeriodRepository;
+import com.example.springBootAPI.repository.SemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +22,14 @@ import java.util.Optional;
 @Service
 public class MapService {
 
-    private final MapRepository mapRepository;
+    @Autowired
+    private PeriodRepository periodRepository;
+    @Autowired
+    private SemesterRepository semesterRepository;
+    @Autowired
+    private DegreeRepository degreeRepository;
+    @Autowired
+    private MapRepository mapRepository;
 
     @Autowired
     public MapService(MapRepository mapRepository) {
@@ -30,6 +43,23 @@ public class MapService {
      * @return the persisted entity
      */
     public Map saveMap(Map map) {
+        // Fetch and set the managed Period entity
+        Period period = periodRepository.findById(map.getPeriod().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Period ID"));
+        map.setPeriod(period);
+
+        // Fetch and set the managed Semester entity
+        Semester semester = semesterRepository.findById(map.getSemester().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Semester ID"));
+        map.setSemester(semester);
+
+        // Fetch and set the managed Degree entity
+        Degree degree = degreeRepository.findById(map.getDegree().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Degree ID"));
+        map.setDegree(degree);
+        degree.addMap(map);
+
+        // Save the Map entity
         return mapRepository.save(map);
     }
 

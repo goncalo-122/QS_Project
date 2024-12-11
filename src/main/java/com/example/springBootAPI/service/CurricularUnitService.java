@@ -1,6 +1,7 @@
 package com.example.springBootAPI.service;
 
 import com.example.springBootAPI.entity.CurricularUnit;
+import com.example.springBootAPI.entity.Degree;
 import com.example.springBootAPI.repository.CurricularUnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
