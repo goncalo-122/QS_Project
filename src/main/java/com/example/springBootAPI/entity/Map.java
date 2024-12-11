@@ -1,5 +1,7 @@
 package com.example.springBootAPI.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -33,9 +35,9 @@ public class Map {
     @JoinColumn(name = "m_p_id", nullable = false)
     private Period period; // Period id (foreign key)
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "m_d_id", nullable = false)
+    @JsonIgnoreProperties("maps") // Ignore the "maps" field in Degree during serialization
     private Degree degree; // Degree id (foreign key)
 
     @Column(name = "m_lectiveyear", nullable = false)

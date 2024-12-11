@@ -3,6 +3,7 @@ package com.example.springBootAPI.controller;
 import com.example.springBootAPI.entity.Map;
 import com.example.springBootAPI.service.MapService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class MapController {
     @PostMapping("/maps")
     public ResponseEntity<Map> saveMap(@RequestBody Map map) {
         Map newMap = mapService.saveMap(map);
-        return ResponseEntity.ok(newMap);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newMap);
     }
 
     /**
