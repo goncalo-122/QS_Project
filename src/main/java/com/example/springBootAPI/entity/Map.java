@@ -17,12 +17,11 @@ public class Map {
     private Long id;
 
     @OneToMany(mappedBy = "map", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference // Manages the relationship with Assessment
     private List<Assessment> assessments;
 
-    @ManyToOne
-    @JoinColumn(name = "m_u_id", nullable = false)
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "m_u_id", nullable = false)
+//    private User user;
 
     @ManyToOne
     @JoinColumn(name = "m_s_id", nullable = false)
@@ -43,9 +42,9 @@ public class Map {
     public Map() {
     }
 
-    public Map(long id, User user, Semester semester, Period period, Degree degree, String lectiveyear) {
+    public Map(long id,Semester semester, Period period, Degree degree, String lectiveyear) {
         this.id = id;
-        this.user = user;
+//        this.user = user;
         this.semester = semester;
         this.period = period;
         this.degree = degree;
@@ -62,13 +61,13 @@ public class Map {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Semester getSemester() {
         return semester;

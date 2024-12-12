@@ -27,19 +27,19 @@ public class User {
     @Column(name = "u_password", nullable = false)
     private String password; // User password
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"degree", "user", "assessments"})
-    private List<Map> maps;
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JsonIgnoreProperties({"degree", "user", "assessments"})
+//    private List<Map> maps;
 
     public User() {
     }
 
-    public User(Long id, UserType type, String email, String password, List<Map> maps) {
+    public User(Long id, UserType type, String email, String password) {
         this.id = id;
         this.type = type;
         this.email = email;
         this.password = password;
-        this.maps = maps;
+//        this.maps = maps;
     }
 
     // Getters and setters...
@@ -76,22 +76,22 @@ public class User {
         this.password = password;
     }
 
-    public List<Map> getMaps() {
-        return maps;
-    }
-
-    public void setMaps(List<Map> maps) {
-        this.maps = maps;
-    }
-
-    // Utility methods
-    public void addMap(Map map) {
-        maps.add(map);
-        map.setUser(this); // Set the user reference in Map
-    }
-
-    public void removeMap(Map map) {
-        maps.remove(map);
-        map.setUser(null); // Clear the user reference in Map
-    }
+//    public List<Map> getMaps() {
+//        return maps;
+//    }
+//
+//    public void setMaps(List<Map> maps) {
+//        this.maps = maps;
+//    }
+//
+//    // Utility methods
+//    public void addMap(Map map) {
+//        maps.add(map);
+//        map.setUser(this); // Set the user reference in Map
+//    }
+//
+//    public void removeMap(Map map) {
+//        maps.remove(map);
+//        map.setUser(null); // Clear the user reference in Map
+//    }
 }

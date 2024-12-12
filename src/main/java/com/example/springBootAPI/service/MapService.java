@@ -96,7 +96,7 @@ public class MapService {
             map.setSemester(updatedMap.getSemester());
             map.setPeriod(updatedMap.getPeriod());
             map.setDegree(updatedMap.getDegree());
-            map.setUser(updatedMap.getUser());
+//            map.setUser(updatedMap.getUser());
             map.setLectiveyear(updatedMap.getLectiveyear());
             return mapRepository.save(map);
         } else {
