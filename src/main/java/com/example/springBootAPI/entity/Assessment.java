@@ -1,6 +1,8 @@
 package com.example.springBootAPI.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,28 +18,33 @@ public class Assessment {
     @Id
     @Column(name = "a_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Assessment id
+    private Long id;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "a_cu_id", nullable = false)
-    private CurricularUnit curricularUnit; // UC of the assessment (foreign key)
+    @JsonIgnoreProperties({"assessments", "degree"})
+    private CurricularUnit curricularUnit;
+
+    @ManyToOne
+    @JoinColumn(name = "a_m_id", nullable = false)
+    @JsonIgnoreProperties({"assessments", "degree"})
+    private Map map;
 
     @ManyToOne
     @JoinColumn(name = "a_ac_id", nullable = false)
-    private AssessmentClassification assessmentClassification; // Assessment classification (foreign key)
+    private AssessmentClassification assessmentClassification;
 
     @Column(name = "a_weight", nullable = false)
-    private Double weight; // Assessment weight
+    private Double weight;
 
     @Column(name = "a_date", nullable = false)
-    private LocalDate date; // Assessment date
+    private LocalDate date;
 
     @Column(name = "a_time", nullable = false)
-    private LocalTime time; // Assessment time
+    private LocalTime time;
 
     @Column(name = "a_classroom", nullable = false)
-    private String classroom; // Assessment room
+    private String classroom;
 
     public Assessment() {
 
@@ -107,5 +114,13 @@ public class Assessment {
 
     public void setClassroom(String classroom) {
         this.classroom = classroom;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
     }
 }

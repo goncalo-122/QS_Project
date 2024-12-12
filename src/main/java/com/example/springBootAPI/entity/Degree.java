@@ -13,13 +13,18 @@ public class Degree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "d_id")
-    private Long id; // Degree id
+    private Long id;
 
     @OneToMany(mappedBy = "degree", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"assessments", "degree"})
     private List<Map> maps;
 
+    @OneToMany(mappedBy = "degree", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"assessments", "degree"})
+    private List<CurricularUnit> curricularUnits;
+
     @Column(name = "d_dscr", nullable = false)
-    private String description; // Degree description
+    private String description;
 
     public Degree() {
     }
@@ -45,6 +50,14 @@ public class Degree {
         this.maps = maps;
     }
 
+    public List<CurricularUnit> getCurricularUnits() {
+        return curricularUnits;
+    }
+
+    public void setCurricularUnits(List<CurricularUnit> curricularUnits) {
+        this.curricularUnits = curricularUnits;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -63,5 +76,15 @@ public class Degree {
     public void removeMap(Map map) {
         this.maps.remove(map);
         map.setDegree(null);
+    }
+
+    public void addCurricularUnit(CurricularUnit curricularUnit) {
+        this.curricularUnits.add(curricularUnit);
+        curricularUnit.setDegree(this);
+    }
+
+    public void removeCurricularUnit(CurricularUnit curricularUnit) {
+        this.maps.remove(curricularUnit);
+        curricularUnit.setDegree(null);
     }
 }

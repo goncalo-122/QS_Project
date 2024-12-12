@@ -1,13 +1,12 @@
 package com.example.springBootAPI.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
-
-/**
- * @author gsn
- * @version 1.0
- * User class represents User entity to be mapped to database
- */
 
 @Entity
 @Table(name = "user")
@@ -20,24 +19,30 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "u_ut_id", nullable = false)
-    private UserType type; // user type (foreign key)
+    private UserType type; // User type (foreign key)
 
     @Column(name = "u_email", nullable = false)
-    private String email; // user email
+    private String email; // User email
 
     @Column(name = "u_password", nullable = false)
-    private String password; // user password
+    private String password; // User password
 
-    public User(){
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"degree", "user", "assessments"})
+    private List<Map> maps;
 
+    public User() {
     }
 
-    public User(Long id, UserType type, String email, String password) {
+    public User(Long id, UserType type, String email, String password, List<Map> maps) {
         this.id = id;
         this.type = type;
         this.email = email;
         this.password = password;
+        this.maps = maps;
     }
+
+    // Getters and setters...
 
     public Long getId() {
         return id;
@@ -69,5 +74,24 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Map> getMaps() {
+        return maps;
+    }
+
+    public void setMaps(List<Map> maps) {
+        this.maps = maps;
+    }
+
+    // Utility methods
+    public void addMap(Map map) {
+        maps.add(map);
+        map.setUser(this); // Set the user reference in Map
+    }
+
+    public void removeMap(Map map) {
+        maps.remove(map);
+        map.setUser(null); // Clear the user reference in Map
     }
 }
