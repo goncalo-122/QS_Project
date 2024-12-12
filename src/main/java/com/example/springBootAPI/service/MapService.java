@@ -93,11 +93,10 @@ public class MapService {
         Optional<Map> existingMap = mapRepository.findById(id);
         if (existingMap.isPresent()) {
             Map map = existingMap.get();
-            map.setCurricularUnits(updatedMap.getCurricularUnits());
             map.setSemester(updatedMap.getSemester());
             map.setPeriod(updatedMap.getPeriod());
             map.setDegree(updatedMap.getDegree());
-//            map.setUser(updatedMap.getUser());
+            map.setUser(updatedMap.getUser());
             map.setLectiveyear(updatedMap.getLectiveyear());
             return mapRepository.save(map);
         } else {

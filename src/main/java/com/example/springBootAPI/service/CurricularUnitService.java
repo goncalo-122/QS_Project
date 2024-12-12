@@ -64,7 +64,6 @@ public class CurricularUnitService {
         Optional<CurricularUnit> existingCurricularUnit = curricularUnitRepository.findById(id);
         if (existingCurricularUnit.isPresent()) {
             CurricularUnit curricularUnit = existingCurricularUnit.get();
-            curricularUnit.setMap(updatedCurricularUnit.getMap());
             curricularUnit.setAssessments(updatedCurricularUnit.getAssessments());
             curricularUnit.setDegree(updatedCurricularUnit.getDegree());
             curricularUnit.setAssessmentType(updatedCurricularUnit.getAssessmentType());
