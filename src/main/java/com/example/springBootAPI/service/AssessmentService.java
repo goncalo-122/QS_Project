@@ -1,7 +1,7 @@
 package com.example.springBootAPI.service;
 
-import com.example.springBootAPI.entity.Assessment;
-import com.example.springBootAPI.repository.AssessmentRepository;
+import com.example.springBootAPI.entity.*;
+import com.example.springBootAPI.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,14 @@ import java.util.Optional;
 @Service
 public class AssessmentService {
 
-    private final AssessmentRepository assessmentRepository;
+    @Autowired
+    private AssessmentClassificationRepository assessmentClassificationRepository;
+    @Autowired
+    private AssessmentRepository assessmentRepository;
+    @Autowired
+    private CurricularUnitRepository curricularUnitRepository;
+    @Autowired
+    private MapRepository mapRepository;
 
     @Autowired
     public AssessmentService(AssessmentRepository assessmentRepository) {
@@ -30,8 +37,35 @@ public class AssessmentService {
      * @return the persisted entity
      */
     public Assessment saveAssessment(Assessment assessment) {
+        // Ensure that the associated AssessmentClassification is managed
+        if (assessment.getAssessmentClassification() != null) {
+            AssessmentClassification managedAssessmentClassification =
+                    assessmentClassificationRepository.findById(assessment.getAssessmentClassification().getId())
+                            .orElseThrow(() -> new IllegalArgumentException("Invalid AssessmentClassification ID"));
+            assessment.setAssessmentClassification(managedAssessmentClassification);
+        }
+
+        // Ensure that the associated Map is managed
+        if (assessment.getMap() != null) {
+            Map managedMap =
+                    mapRepository.findById(assessment.getMap().getId())
+                            .orElseThrow(() -> new IllegalArgumentException("Invalid Map ID"));
+            assessment.setMap(managedMap);
+        }
+
+        // Ensure that the associated CurricularUnit is managed
+        if (assessment.getCurricularUnit() != null) {
+            CurricularUnit managedCurricularUnit =
+                    curricularUnitRepository.findById(assessment.getCurricularUnit().getId())
+                            .orElseThrow(() -> new IllegalArgumentException("Invalid CurricularUnit ID"));
+            assessment.setCurricularUnit(managedCurricularUnit);
+        }
+
+        // Save the Assessment entity
         return assessmentRepository.save(assessment);
     }
+
+
 
     /**
      * Get all the Assessments.
