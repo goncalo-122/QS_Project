@@ -1,24 +1,58 @@
 package com.example.springBootAPI.controller;
 
 import com.example.springBootAPI.entity.User;
+import com.example.springBootAPI.repository.UserRepository;
 import com.example.springBootAPI.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
 
+    private final UserRepository userRepository;
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserRepository userRepository, UserService userService) {
+        this.userRepository = userRepository;
         this.userService = userService;
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> loginRequest) {
+        String email = loginRequest.get("email");
+        String password = loginRequest.get("password");
+
+        // Fetch the user by email
+        Optional<User> userOpt = userRepository.findByEmail(email);
+
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+
+            // Validate the password
+            if (password.equals(user.getPassword())) {
+                String userType = user.getType().getDescription();
+                return ResponseEntity.ok(Map.of(
+                        "message", "Login successful",
+                        "userType", userType,
+                        "userId", user.getId()
+                ));
+            }
+        }
+
+        // If login fails
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+                "message", "Invalid email or password"
+        ));
+}
+
     /**
      * Create a new user.
      *
