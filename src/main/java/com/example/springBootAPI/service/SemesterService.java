@@ -62,7 +62,7 @@ public class SemesterService {
         Optional<Semester> existingSemester = semesterRepository.findById(id);
         if (existingSemester.isPresent()) {
             Semester semester = existingSemester.get();
-            semester.setDescription(updatedSemester.getDescription());
+            //semester.setDescription(updatedSemester.getDescription());
             semester.setInitialDate(updatedSemester.getInitialDate());
             semester.setEndDate(updatedSemester.getEndDate());
             return semesterRepository.save(semester);

@@ -62,7 +62,7 @@ public class PeriodService {
         Optional<Period> existingPeriod = periodRepository.findById(id);
         if (existingPeriod.isPresent()) {
             Period period = existingPeriod.get();
-            period.setDescription(updatedPeriod.getDescription());
+            //period.setDescription(updatedPeriod.getDescription());
             period.setInitialDate(updatedPeriod.getInitialDate());
             period.setEndDate(updatedPeriod.getEndDate());
             return periodRepository.save(period);
